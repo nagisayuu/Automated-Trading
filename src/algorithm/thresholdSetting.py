@@ -10,7 +10,6 @@ class AlgExecuter:
 		self.filename=(os.path.dirname(os.path.abspath(__file__)) + '/../../data/201705171720.csv')
 		# 現在時刻からここで参照した時間まで遡った時間を対象に処理する(デフォルトは12時間)
 		self.refSecond=60*60*12
-		self.DIFF = 30
 		self.LIMIT = 30
 		self.STOP_LIMIT = 30
 
@@ -41,14 +40,25 @@ class AlgExecuter:
 		data=[[float(elm) for elm in x.split(",")] for x in body.split()]
 		return data
 
-	def calcAverage(self,data):
-		return 0
+	def judgeFromAverage(self,data):
+		import numpy as np
+		recentPrice=data[0][0]
+		del data[0]
+		averagePrice=(np.sum(data, axis=0)[0])/len(data)
+		if averagePrice<recentPrice:
+			if averagePrice+self.LIMIT<recentPrice:
+				return "buy"
+			else: return "wait"
+		else:
+			if averagePrice-self.STOP_LIMIT<recentPrice:
+				return "wait2"
+			else: return "sell"
 
 	def execute(self):
 		# 【試験時はコメントアウト】ファイル読み込み
-		data=self.readFile()
+		#data=self.readFile()
 		# 【試験時はコメントイン】webから価格情報取得
-		#data=self.fetchPrice()
+		data=self.fetchPrice()
 		# 売買の判断
-		avg=self.calcAverage(data)
+		return self.judgeFromAverage(data)
 		
