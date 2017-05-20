@@ -5,10 +5,11 @@ import sqlite3
 
 class DBInstance:
 
-	def __init__(self):
-		self.dbname="autoTradeDB"
+        def __init__(self):
+                conn = sqlite3.connect(tradelog.db)
+                conn.execute("create table tradelog(id,date,sprice,svolume,scur,bprice,bvilume,vcur)")
 
-table = tradelog
+        def get():
 
-	def connect(self,
-	
+
+        def put():
