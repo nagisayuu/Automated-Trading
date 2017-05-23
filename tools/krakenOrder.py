@@ -10,6 +10,7 @@ args=sys.argv
 
 if not len(args)==2:
 	print("krakenOrder needs 2 arguments [BUY or SELL,volume]")
+	sys.exit(1)
 
 k = krakenex.API()
 k.load_key('../key/kraken.key')
