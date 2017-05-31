@@ -65,24 +65,24 @@ class unittestMain(unittest.TestCase):
 		curdir=os.path.dirname(os.path.abspath(__file__))
 		flagFile = os.path.join(curdir, '../../../flag/constantMagnification.flag')
 		if os.path.isfile(flagFile):
-			cmd="/bin/mv "+flagFile+" /tmp"
+			cmd="mv "+flagFile+" /tmp"
 			subprocess.call( cmd, shell=True)
 			mvFlag=True
-		cmd="/bin/touch "+flagFile
+		cmd="touch "+flagFile
 		subprocess.call( cmd, shell=True)
 		# Success
 		expectedFlag = True
 		actualFlag = self.target.checkFlag()
 		self.assertEqual(expectedFlag, actualFlag)
 		# Failed prepare
-		cmd="/bin/rm -f "+flagFile
+		cmd="rm -f "+flagFile
 		subprocess.call( cmd, shell=True)
 		#Failed
 		expectedFlag = False
 		actualFlag = self.target.checkFlag()
 		self.assertEqual(expectedFlag, actualFlag)
 		if mvFlag:
-			cmd="/bin/mv /tmp/constantMagnification.flag "+flagFile
+			cmd="mv /tmp/constantMagnification.flag "+flagFile
 			subprocess.call( cmd, shell=True	)
 
 	def test_execute(self):
@@ -92,7 +92,7 @@ class unittestMain(unittest.TestCase):
 		curdir=os.path.dirname(os.path.abspath(__file__))
 		flagFile = os.path.join(curdir, '../../../flag/constantMagnification.flag')
 		if os.path.isfile(flagFile):
-			cmd="/bin/mv "+flagFile+" /tmp"
+			cmd="mv "+flagFile+" /tmp"
 			subprocess.call( cmd, shell=True)
 			mvFlag=True
 		# Buy
@@ -101,7 +101,7 @@ class unittestMain(unittest.TestCase):
 		self.assertEqual(expectedOperate, actualOperate)
 
 		# Sell prepare
-		cmd="/bin/echo '0,0,0' >"+flagFile
+		cmd="echo '0,0,0' >"+flagFile
 		subprocess.call( cmd, shell=True)
 
 		# Sell
@@ -110,7 +110,7 @@ class unittestMain(unittest.TestCase):
 		self.assertEqual(expectedOperate, actualOperate)
 
 		# Wait prepare
-		cmd="/bin/echo '999999999999999,999999999999999,999999999999999' >"+flagFile
+		cmd="echo '999999999999999,999999999999999,999999999999999' >"+flagFile
 		subprocess.call( cmd, shell=True)
 
 		# Wait
@@ -118,11 +118,11 @@ class unittestMain(unittest.TestCase):
 		actualOperate = self.target.execute()[0]
 		self.assertEqual(expectedOperate, actualOperate)
 
-		cmd="/bin/rm -f "+flagFile
+		cmd="rm -f "+flagFile
 		subprocess.call( cmd, shell=True)
 
 		if mvFlag:
-			cmd="/bin/mv /tmp/constantMagnification.flag "+flagFile
+			cmd="mv /tmp/constantMagnification.flag "+flagFile
 			subprocess.call(cmd, shell=True)
 
 if __name__ == '__main__':

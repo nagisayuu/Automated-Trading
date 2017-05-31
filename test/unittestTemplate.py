@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import sys,os,re,unittest
-# 対象ファイルをパスに追加
+# 対象ファイルをパスに追加(srcディレクトリとtestディレクトリの構造が同じであるかぎり自動で追加するため手動設定の必要なし)
 rootDir=re.sub(r'/test/.*','',os.path.dirname(os.path.abspath(__file__)))
 targetFile=rootDir+'/src'+re.sub(rootDir+'/test','',os.path.dirname(os.path.abspath(__file__)))+'.py'
 targetDir=os.path.dirname(targetFile)
