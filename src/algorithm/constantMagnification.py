@@ -56,7 +56,7 @@ class AlgExecutor:
 
 	# 1.現在の価格を取得
 		# 【試験時はコメントアウト】ファイル読み込み
-		#data=util.csv_read(path)
+		#flag,data=util.csv_read(path)
 		# 【試験時はコメントイン】webから価格情報取
 		flag,recData=self.fetchPrice()
 		if not flag:
@@ -70,7 +70,7 @@ class AlgExecutor:
 			return "buy",recData
 	# 4.フラグファイルがあったらファイルから購入時の価格を取得
 		else:
-			fileData=util.csv_read(path)
+			flag,fileData=util.csv_read(path)
 
 	# 5.現在の価格が購入時より閾値以上高かったら売却(DBに情報入れる) フラグファイルを削除
 		if fileData[0][0]*self.magnification < recData["price"]:

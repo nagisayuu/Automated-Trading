@@ -11,47 +11,47 @@ sys.path.append(targetDir)
 
 import krakenAPI
 class unittestMain(unittest.TestCase):
-	"""あるクラスをテストするテストクラス"""
-	CLS_VAL = 'none'
+    """あるクラスをテストするテストクラス"""
+    CLS_VAL = 'none'
 
-	# テストクラスが初期化される際に一度だけ呼ばれる (python2.7以上)
-	@classmethod
-	def setUpClass(cls):
-		if sys.flags.debug: print('> setUpClass method is called.')
-		# テストの準備するための重い処理のメソッドを実行
-		cls.CLS_VAL = '> setUpClass : initialized!'
-		if sys.flags.debug: print(cls.CLS_VAL)
+    # テストクラスが初期化される際に一度だけ呼ばれる (python2.7以上)
+    @classmethod
+    def setUpClass(cls):
+        if sys.flags.debug: print('> setUpClass method is called.')
+        # テストの準備するための重い処理のメソッドを実行
+        cls.CLS_VAL = '> setUpClass : initialized!'
+        if sys.flags.debug: print(cls.CLS_VAL)
 
-	# テストクラスが解放される際に一度だけ呼ばれる (python2.7以上)
-	@classmethod
-	def tearDownClass(cls):
-		if sys.flags.debug: print('> tearDownClass method is called.')
-		# setUpClassで準備したオブジェクトを解放する
-		cls.CLS_VAL = '> tearDownClass : released!'
-		if sys.flags.debug: print(cls.CLS_VAL)
+    # テストクラスが解放される際に一度だけ呼ばれる (python2.7以上)
+    @classmethod
+    def tearDownClass(cls):
+        if sys.flags.debug: print('> tearDownClass method is called.')
+        # setUpClassで準備したオブジェクトを解放する
+        cls.CLS_VAL = '> tearDownClass : released!'
+        if sys.flags.debug: print(cls.CLS_VAL)
 
-	# テストメソッドを実行するたびに呼ばれる
-	def setUp(self):
-		if sys.flags.debug: print(os.linesep + '> setUp method is called.')
-		# テストの準備をするための軽い処理を実行
-		self.target = krakenAPI.Interface("XETHZJPY",os.path.dirname(os.path.abspath(__file__))+"/../../../../key/kraken.key.dum")
+    # テストメソッドを実行するたびに呼ばれる
+    def setUp(self):
+        if sys.flags.debug: print(os.linesep + '> setUp method is called.')
+        # テストの準備をするための軽い処理を実行
+        self.target = krakenAPI.Interface("XETHZJPY",os.path.dirname(os.path.abspath(__file__))+"/../../../../key/kraken.key.dum")
 
-	# テストメソッドの実行が終わるたびに呼ばれる
-	def tearDown(self):
-		if sys.flags.debug: print(os.linesep + '> tearDown method is called.')
-		# setUpで準備したオブジェクトを解放する
-		del(self.target)
+    # テストメソッドの実行が終わるたびに呼ばれる
+    def tearDown(self):
+        if sys.flags.debug: print(os.linesep + '> tearDown method is called.')
+        # setUpで準備したオブジェクトを解放する
+        del(self.target)
 
-	def test_getTradeData(self):
-		expected = True
-		actual,data = self.target.getTradeData()
-		self.assertEqual(expected, actual)
+    def test_getTradeData(self):
+        expected = True
+        actual,data = self.target.getTradeData()
+        self.assertEqual(expected, actual)
 
-	def test_fetchCurrentPrice(self):
-		expected = True
-		actual,value = self.target.fetchCurrentPrice()
-		self.assertEqual(expected, actual)
+    def test_fetchCurrentPrice(self):
+        expected = True
+        actual,value = self.target.fetchCurrentPrice()
+        self.assertEqual(expected, actual)
 
 if __name__ == '__main__':
-	# unittestを実行
-	unittest.main()
+    # unittestを実行
+    unittest.main()

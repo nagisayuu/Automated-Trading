@@ -43,7 +43,7 @@ def main():
 			# dbi.put(response[0],date,"-","-","JPY",recData["price"],volume,"ETH")
 		else:
 			# 売却可能数を取得
-			volume=util.csv_read(path)[0][0]
+			flag,volume=util.csv_read(path)[0][0]
 			# 売却
 			#response=k.query_private('AddOrder', {'pair': pair,'type': result,'ordertype': 'market','volume': volume})
 			# ローカルファイルを削除

@@ -26,7 +26,7 @@ class AlgExecutor:
 	# 【試験用関数】ローカルファイルから値段の情報を取得
 	def readFile(self):
 		import common.util as util
-		data=util.csv_read(self.filename)
+		flag,data=util.csv_read(self.filename)
 		return data
 
 	# webから値段の情報を取得
