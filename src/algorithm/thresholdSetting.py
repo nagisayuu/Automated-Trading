@@ -3,7 +3,7 @@
 
 import os
 
-class AlgExecuter:
+class AlgExecutor:
 
 	def __init__(self):
 		# 読み込むファイルの名前

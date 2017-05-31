@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-import os
+import os,sys
 
-class AlgExecuter:
+class AlgExecutor:
 
-	def __init__(self):
+	def __init__(self,pair,keyFile):
 		# 【試験用】読み込むファイルの名前
 		self.filename=(os.path.dirname(os.path.abspath(__file__)) + '/../../data/201705171720.csv')
 		# 現在時刻からここで参照した時間まで遡った時間を対象に処理する(デフォルトは12時間)
 		self.magnification=1.1
+		self.pair=pair
+		self.keyFile=keyFile
 
 	# 【試験用】オブジェクトの読み込みファイル名を設定
 	# arg ファイル名
@@ -22,14 +24,16 @@ class AlgExecuter:
 
 	# webから値段の情報を取得
 	def fetchPrice(self):
-		import httplib
-		# httpでwebから価格情報を取得
-		conn = httplib.HTTPConnection("api.bitcoincharts.com")
-		conn.request("GET", "/v1/trades.csv?symbol=coincheckJPY")
-		r1 = conn.getresponse()
-		body = r1.read()
-		data=[[float(elm) for elm in x.split(",")] for x in body.split()]
-		return data
+		srcpath=os.path.dirname(os.path.abspath(__file__)) + '/../'
+		if not srcpath in sys.path:
+			sys.path.append(srcpath)
+			appendFlag=True
+		import interface.kraken.krakenAPI as kraken
+		api=kraken.Interface(self.pair,self.keyFile)
+		flag,data=api.fetchCurrentPrice()
+		if appendFlag==True:
+			sys.path.remove(srcpath)
+		return flag,data
 
 	# ローカルファイルの存在を確認
 	# arg なし
@@ -43,7 +47,7 @@ class AlgExecuter:
 	# アルゴリズムを実行
 	# arg なし
 	# ret1 買い("sell")か売り("buy")
-	# ret2 値段、  
+	# ret2 {値段("price")、時刻("time"}を要素にもつリスト
 	def execute(self):
 		import common.util as util
 		# フラグファイルパス
@@ -54,8 +58,9 @@ class AlgExecuter:
 		# 【試験時はコメントアウト】ファイル読み込み
 		#data=util.csv_read(path)
 		# 【試験時はコメントイン】webから価格情報取
-		recData=self.fetchPrice()
-
+		flag,recData=self.fetchPrice()
+		if not flag:
+			return "wait",recData
 	# 2.今etherを持っているかどうか確認する。取引用のフラグファイルを探す
 		flag=util.checkFlag(path)
 
@@ -68,7 +73,7 @@ class AlgExecuter:
 			fileData=util.csv_read(path)
 
 	# 5.現在の価格が購入時より閾値以上高かったら売却(DBに情報入れる) フラグファイルを削除
-		if fileData[0][0]*self.magnification < recData:
+		if fileData[0][0]*self.magnification < recData["price"]:
 			# util.remFile(path)
 			return "sell",recData
 	# 6.現在の価格よりも低かったらstay(何もしない)

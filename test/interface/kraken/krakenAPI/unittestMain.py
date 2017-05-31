@@ -34,7 +34,7 @@ class unittestMain(unittest.TestCase):
 	def setUp(self):
 		if sys.flags.debug: print(os.linesep + '> setUp method is called.')
 		# テストの準備をするための軽い処理を実行
-		self.target = krakenAPI.Interface("XETHZJPY","../../../../key/kraken.key.dum")
+		self.target = krakenAPI.Interface("XETHZJPY",os.path.dirname(os.path.abspath(__file__))+"/../../../../key/kraken.key.dum")
 
 	# テストメソッドの実行が終わるたびに呼ばれる
 	def tearDown(self):

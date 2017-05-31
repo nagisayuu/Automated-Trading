@@ -27,17 +27,17 @@ class Interface:
 	# 現在の価格を取得するAPI
 	# arg なし
 	# ret1 TF
-	# ret2 現在の価格(直近3取引の価格の平均) , エラーメッセージ
+	# ret2 [取得時刻,現在の価格(直近3取引の価格の平均)](成功) , エラーメッセージを含むリスト(失敗)
 	def fetchCurrentPrice(self):
 		tf,response=self.getTradeData()
 		if tf == False:
-			return False,response["error"]
+			return False,{error: response["error"]}
 		tradesNum=3
 		datalen=len(response["result"][self.pair])
 		priceSum=0
 		for j in [datalen-i for i in range(tradesNum)]:
-			priceSum=priceSum+response["result"][self.pair][j-1][2]
-		return True,priceSum/tradesNum
+			priceSum=priceSum+float(response["result"][self.pair][j-1][0])
+		return True,{"time": response["result"][self.pair][datalen-1][2],"price": priceSum/tradesNum}
 
 	# アカウントの資産の量を取得するAPI
 	# arg 対象とする資産
