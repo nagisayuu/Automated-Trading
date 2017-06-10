@@ -5,10 +5,10 @@
 # arg1 ファイル名(パス)
 # ret1 0(成功) or 1(失敗)
 # ret2 csvを読み込んだリスト(成功) or エラーメッセージを含んだリスト(失敗)
-def csv_read(filename):
+def csv_read(filename,mode="r"):
     import csv
     try:
-        with open(filename, 'r') as fd:
+        with open(filename, mode) as fd:
             data=[[float(elm) for elm in v] for v in csv.reader(fd)]
         return 0,data
     except Exception as e:
@@ -22,10 +22,10 @@ def csv_read(filename):
 # arg1 ファイル名(パス)
 # arg2 csvの情報を格納した配列
 # ret1 0(成功) or 1(失敗)
-def csv_write(filename,csvlist):
+def csv_write(filename,csvlist,mode="w"):
     import csv
     try:
-        with open(filename, 'w') as fd:
+        with open(filename, mode) as fd:
             csvWriter = csv.writer(fd)
             csvWriter.writerows(csvlist)
         return 0
