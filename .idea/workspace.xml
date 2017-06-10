@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2bc11c42-cc5d-4fc6-97d0-d1cf4699ca54" name="Default" comment="add:common_unittest">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/interface/bitflyer/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/interface/bitflyer/bitflyerapi.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/interface/localfile/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/interface/localfile/getRecord.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/interface/sqlite3/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/simulate/constantMagnification_simulater.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/coincheckJPY.csv.gz" afterPath="" />
+    <list default="true" id="2bc11c42-cc5d-4fc6-97d0-d1cf4699ca54" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/constantMagnification.py" afterPath="$PROJECT_DIR$/src/algorithm/constantMagnification.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/thresholdSetting.py" afterPath="$PROJECT_DIR$/src/algorithm/thresholdSetting.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/util.py" afterPath="$PROJECT_DIR$/src/common/util.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/autoTradeMain.py" afterPath="$PROJECT_DIR$/src/controller/autoTradeMain.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interface/kraken/krakenAPI.py" afterPath="$PROJECT_DIR$/src/interface/kraken/krakenAPI.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -556,7 +544,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496223561533</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add:integrateTest src">
+      <created>1497067214892</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1497067214892</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -652,7 +647,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add:common_unittest" />
-    <option name="LAST_COMMIT_MESSAGE" value="add:common_unittest" />
+    <MESSAGE value="add:integrateTest src" />
+    <option name="LAST_COMMIT_MESSAGE" value="add:integrateTest src" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
